@@ -39,14 +39,11 @@ def alignment_step(config, dataset_lookup=None, model_mode='best_validation', pe
     torch.cuda.empty_cache()
 
     set_list = load_file_list(config['training'][dataset_lookup])
-    set_list = set_list[:int(len(set_list) * .1)]
-    print(len(set_list))
     if percent_range is not None:
         start = int(len(set_list) * percent_range[0])
         end = int(len(set_list) * percent_range[1])
         set_list = set_list[start:end]
 
-    print(len(set_list))
     dataset = AlignmentDataset(set_list, None)
     dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=0, collate_fn=alignment_dataset.collate)
 
