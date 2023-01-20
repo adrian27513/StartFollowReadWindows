@@ -36,7 +36,6 @@ from e2e import validation_utils
 from utils.dataset_parse import load_file_list
 
 def alignment_step(config, dataset_lookup=None, model_mode='best_validation', percent_range=None):
-    torch.cuda.empty_cache()
 
     set_list = load_file_list(config['training'][dataset_lookup])
     if percent_range is not None:
